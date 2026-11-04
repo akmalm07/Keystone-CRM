@@ -1,0 +1,91 @@
+- generic [ref=f3e3]:
+  - complementary [ref=f3e4]:
+    - generic [ref=f3e5]: Keystone CRM
+    - navigation [ref=f3e11]:
+      - paragraph [ref=f3e12]: Main
+      - link "Dashboard" [ref=f3e13] [cursor=pointer]:
+        - /url: /dashboard
+      - link "Leads" [ref=f3e19] [cursor=pointer]:
+        - /url: /leads
+      - link "Properties" [active] [ref=f3e25] [cursor=pointer]:
+        - /url: /properties
+      - link "Messages" [ref=f3e30] [cursor=pointer]:
+        - /url: /messages
+      - generic [ref=f3e33]:
+        - paragraph [ref=f3e34]: Account
+        - link "Settings" [ref=f3e35] [cursor=pointer]:
+          - /url: /settings
+    - generic [ref=f3e40] [cursor=pointer]:
+      - generic [ref=f3e41]: AJ
+      - generic [ref=f3e43]:
+        - paragraph [ref=f3e44]: Alex Morgan
+        - paragraph [ref=f3e45]: alex@keystonecrm.com
+      - button "Logout" [ref=f3e46]
+  - generic [ref=f3e47]:
+    - banner [ref=f3e48]:
+      - heading "Properties" [level=1] [ref=f3e260]
+      - textbox "Search..." [ref=f3e54]
+    - main [ref=f3e55]:
+      - generic [ref=f3e261]:
+        - generic [ref=f3e262]:
+          - generic [ref=f3e263]:
+            - heading "Properties" [level=2] [ref=f3e264]
+            - paragraph [ref=f3e265]: 2 of 2 properties
+          - button "Add Property" [ref=f3e266] [cursor=pointer]
+        - generic [ref=f3e269]:
+          - textbox "Search by address, status, or source..." [ref=f3e272]
+          - generic [ref=f3e273]:
+            - button "All" [ref=f3e274] [cursor=pointer]
+            - button "Open" [ref=f3e275] [cursor=pointer]
+            - button "Draft" [ref=f3e276] [cursor=pointer]
+            - button "Archived" [ref=f3e277] [cursor=pointer]
+            - generic [ref=f3e278]:
+              - button "Grid" [ref=f3e279] [cursor=pointer]
+              - button "Table" [ref=f3e280] [cursor=pointer]
+        - generic [ref=f3e281]:
+          - generic [ref=f3e282]: "Sort by:"
+          - button "Address ↑" [ref=f3e283] [cursor=pointer]:
+            - text: Address
+            - generic [ref=f3e284]: ↑
+          - button "Price ↕" [ref=f3e285] [cursor=pointer]:
+            - text: Price
+            - generic [ref=f3e286]: ↕
+          - button "Bedrooms ↕" [ref=f3e287] [cursor=pointer]:
+            - text: Bedrooms
+            - generic [ref=f3e288]: ↕
+          - button "Status ↕" [ref=f3e289] [cursor=pointer]:
+            - text: Status
+            - generic [ref=f3e290]: ↕
+        - generic [ref=f3e291]:
+          - generic [ref=f3e292]:
+            - img "Property" [ref=f3e294]
+            - generic [ref=f3e295]:
+              - generic [ref=f3e296]:
+                - paragraph [ref=f3e297]: 116 Harbor Lane
+                - generic [ref=f3e298]:
+                  - generic [ref=f3e299]: Open
+                  - button [ref=f3e301] [cursor=pointer]
+              - paragraph [ref=f3e306]: $620,000
+              - generic [ref=f3e307]:
+                - generic [ref=f3e308]: 3 bd
+                - generic [ref=f3e311]: 2 ba
+                - generic [ref=f3e315]: 2,040 sqft
+              - generic [ref=f3e318]:
+                - generic [ref=f3e319]: referral
+                - generic [ref=f3e320]: Oct 6, 2026
+          - generic [ref=f3e321]:
+            - img "Property" [ref=f3e323]
+            - generic [ref=f3e324]:
+              - generic [ref=f3e325]:
+                - paragraph [ref=f3e326]: 841 Maple Avenue
+                - generic [ref=f3e327]:
+                  - generic [ref=f3e328]: Open
+                  - button [ref=f3e330] [cursor=pointer]
+              - paragraph [ref=f3e335]: $840,000
+              - generic [ref=f3e336]:
+                - generic [ref=f3e337]: 4 bd
+                - generic [ref=f3e340]: 3 ba
+                - generic [ref=f3e344]: 2,680 sqft
+              - generic [ref=f3e347]:
+                - generic [ref=f3e348]: zillow
+                - generic [ref=f3e349]: Sep 30, 2026

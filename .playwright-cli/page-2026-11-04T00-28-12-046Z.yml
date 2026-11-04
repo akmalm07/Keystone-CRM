@@ -1,0 +1,74 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - link "Keystone CRM" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - text: Keystone
+      - generic [ref=e9]: CRM
+    - link "Sign in" [ref=e10] [cursor=pointer]:
+      - /url: /login
+  - main [ref=e11]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - paragraph [ref=e16]: Built for working agents
+        - heading "Keep every opportunity moving." [level=1] [ref=e18]
+        - paragraph [ref=e19]: Keystone brings leads, conversations, and property context into one focused workspace—so follow-up stays personal and nothing falls through the cracks.
+        - generic [ref=e20]:
+          - link "Open your workspace" [ref=e21] [cursor=pointer]:
+            - /url: /login
+          - link "See how it works" [ref=e24] [cursor=pointer]:
+            - /url: "#workflow"
+        - generic [ref=e25]:
+          - generic [ref=e26]: Email + SMS in one view
+          - generic [ref=e29]: Lead context, not noise
+          - generic [ref=e32]: Built-in follow-up signals
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - generic [ref=e38]: Pipeline overview
+          - generic [ref=e41]: Updated now
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - paragraph [ref=e44]: "42"
+            - paragraph [ref=e45]: Active leads
+          - generic [ref=e46]:
+            - paragraph [ref=e47]: "8"
+            - paragraph [ref=e48]: Need follow-up
+          - generic [ref=e49]:
+            - paragraph [ref=e50]: 76%
+            - paragraph [ref=e51]: Reply rate
+        - generic [ref=e52]:
+          - paragraph [ref=e54]: Priority conversations
+          - generic [ref=e58]:
+            - generic [ref=e59]: ME
+            - generic [ref=e60]:
+              - paragraph [ref=e61]: Morgan Ellis
+              - paragraph [ref=e62]: Asking about 841 Maple Ave
+            - generic [ref=e63]: 2 min ago
+          - generic [ref=e64]:
+            - generic [ref=e65]: JL
+            - generic [ref=e66]:
+              - paragraph [ref=e67]: Jordan Lee
+              - paragraph [ref=e68]: Requested a showing this week
+            - generic [ref=e69]: 18 min ago
+          - generic [ref=e70]:
+            - generic [ref=e71]: CM
+            - generic [ref=e72]:
+              - paragraph [ref=e73]: Casey Martin
+              - paragraph [ref=e74]: New referral from Mike Rose
+            - generic [ref=e75]: 1 hr ago
+    - generic [ref=e77]:
+      - generic [ref=e78]:
+        - heading "Organize the signal" [level=2] [ref=e84]
+        - paragraph [ref=e85]: Capture each inquiry with the property and source context that matters.
+      - generic [ref=e86]:
+        - heading "Respond with context" [level=2] [ref=e91]
+        - paragraph [ref=e92]: Pick up any conversation without rebuilding the story.
+      - generic [ref=e93]:
+        - heading "Stay in control" [level=2] [ref=e98]
+        - paragraph [ref=e99]: Use automation to surface work—not to replace your judgment.
+  - contentinfo [ref=e100]:
+    - paragraph [ref=e101]: © 2026 Keystone CRM
+    - generic [ref=e102]:
+      - link "Terms" [ref=e103] [cursor=pointer]:
+        - /url: /terms
+      - link "Privacy" [ref=e104] [cursor=pointer]:
+        - /url: /privacy

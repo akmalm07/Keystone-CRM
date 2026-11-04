@@ -4,7 +4,6 @@ import { Button } from '../components/ui/Button'
 import type { ContactType, Preferences } from '../context/AuthContext'
 import {
   Chrome,
-  Mail,
   Bell,
   Shield,
   CheckCircle2,
@@ -107,21 +106,25 @@ export function SettingsPage() {
   }
 
   const handleSave = async () => {
-    const response = await fetch(`${BACKEND_URL}api/settings/preferences`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify(preferences),
-    })
+    setSaving(true)
+    try {
+      const response = await fetch(`${BACKEND_URL}api/settings/preferences`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(preferences),
+      })
 
-    if (!response.ok) {
-      alert('Error saving the files')
+      if (!response.ok) throw new Error('Unable to save preferences')
+      setSaved(true)
+      setTimeout(() => setSaved(false), 3000)
+    } catch {
+      alert('Unable to save preferences. Please try again.')
+    } finally {
+      setSaving(false)
     }
-
-    setSaved(true)
-    setTimeout(() => setSaved(false), 3000)
   }
 
   const handleLogout = async () => {

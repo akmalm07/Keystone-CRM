@@ -1,0 +1,79 @@
+- generic [ref=f1e3]:
+  - complementary [ref=f1e4]:
+    - generic [ref=f1e5]: Keystone CRM
+    - navigation [ref=f1e11]:
+      - paragraph [ref=f1e12]: Main
+      - link "Dashboard" [ref=f1e13] [cursor=pointer]:
+        - /url: /dashboard
+      - link "Leads" [ref=f1e19] [cursor=pointer]:
+        - /url: /leads
+      - link "Properties" [ref=f1e25] [cursor=pointer]:
+        - /url: /properties
+      - link "Messages" [ref=f1e30] [cursor=pointer]:
+        - /url: /messages
+      - generic [ref=f1e33]:
+        - paragraph [ref=f1e34]: Account
+        - link "Settings" [ref=f1e35] [cursor=pointer]:
+          - /url: /settings
+    - generic [ref=f1e40] [cursor=pointer]:
+      - generic [ref=f1e41]: AJ
+      - generic [ref=f1e43]:
+        - paragraph [ref=f1e44]: Alex Morgan
+        - paragraph [ref=f1e45]: alex@keystonecrm.com
+      - button "Logout" [ref=f1e46]
+  - generic [ref=f1e47]:
+    - banner [ref=f1e48]:
+      - heading "Dashboard" [level=1] [ref=f1e49]
+      - textbox "Search..." [ref=f1e54]
+    - main [ref=f1e55]:
+      - generic [ref=f1e57]:
+        - generic [ref=f1e58]:
+          - generic [ref=f1e59]:
+            - heading "Overview" [level=2] [ref=f1e61]
+            - paragraph [ref=f1e62]: Tuesday, November 3
+          - generic [ref=f1e63]:
+            - button "Last Month" [ref=f1e65] [cursor=pointer]
+            - button "View all leads" [ref=f1e68] [cursor=pointer]
+        - generic [ref=f1e72]:
+          - generic [ref=f1e74]:
+            - paragraph [ref=f1e82]: "42"
+            - paragraph [ref=f1e83]: Total Leads
+            - paragraph [ref=f1e84]: All active leads in your CRM
+          - generic [ref=f1e86]:
+            - paragraph [ref=f1e92]: "2"
+            - paragraph [ref=f1e93]: New Leads
+            - paragraph [ref=f1e94]: Created in the last month
+          - generic [ref=f1e96]:
+            - paragraph [ref=f1e102]: "0"
+            - paragraph [ref=f1e103]: Messages Received
+            - paragraph [ref=f1e104]: Inbound SMS & email, last month
+          - generic [ref=f1e106]:
+            - paragraph
+            - paragraph [ref=f1e114]: Needs Attention
+            - paragraph [ref=f1e115]: Inbound with no reply in last 24h
+        - generic [ref=f1e116]:
+          - generic [ref=f1e118]:
+            - heading "Recent Activity" [level=3] [ref=f1e120]
+            - generic [ref=f1e121]: No activity in the selected time window.
+          - generic [ref=f1e122]:
+            - generic [ref=f1e123]:
+              - heading "Leads by Status" [level=3] [ref=f1e125]
+              - generic [ref=f1e127]:
+                - generic [ref=f1e129]:
+                  - generic [ref=f1e130]: New
+                  - generic [ref=f1e132]: "4"
+                - generic [ref=f1e136]:
+                  - generic [ref=f1e137]: Active
+                  - generic [ref=f1e139]: "29"
+                - generic [ref=f1e143]:
+                  - generic [ref=f1e144]: Cold
+                  - generic [ref=f1e146]: "0"
+                - generic [ref=f1e149]:
+                  - generic [ref=f1e150]: AI Disabled
+                  - generic [ref=f1e152]: "0"
+            - generic [ref=f1e154]:
+              - heading "Quick Actions" [level=3] [ref=f1e156]
+              - generic [ref=f1e157]:
+                - button "View all leads" [ref=f1e158] [cursor=pointer]
+                - button "Check messages" [ref=f1e167] [cursor=pointer]
+                - button "Browse properties" [ref=f1e173] [cursor=pointer]

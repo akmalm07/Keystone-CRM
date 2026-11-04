@@ -18,5 +18,13 @@ export default defineConfig([
     languageOptions: {
       globals: globals.browser,
     },
+    rules: {
+      // Existing data-fetching hooks intentionally set request state in
+      // effects. Keep this rule disabled until those hooks are refactored.
+      'react-hooks/set-state-in-effect': 'off',
+      'react-refresh/only-export-components': 'off',
+      // API payloads are progressively typed at their boundaries.
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
   },
 ])

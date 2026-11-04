@@ -8,6 +8,8 @@ import {
 import { eq, desc, and } from 'drizzle-orm';
 import { requireAuth } from '../middleware/requireAuth.js';
 import { sendInitialMessages } from '../pubsub-webhook-helpers.js';
+import { generateSmsAiReply } from '../ai/sms-reply.js';
+import { generateEmailAiReply } from '../ai/email-reply.js';
 
 const router = Router();
 
@@ -103,6 +105,93 @@ router.get('/:id', requireAuth, async (req, res) => {
     return res.json({ ...lead, notes, messages: allMessages });
   } catch (err) {
     console.error('GET /api/leads/:id error:', err);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+/* Generates a reviewable AI reply draft for the authenticated agent.
+ * Called by the lead-detail workspace; this endpoint never sends a message.
+ *
+ * Route parameters:
+ *   id: lead id
+ *
+ * Response:
+ *   { channel, body, subject?, readyToBook }
+ */
+router.post('/:id/generate-draft', requireAuth, async (req, res) => {
+  try {
+    const leadId = Number(req.params.id);
+    const [lead] = await db
+      .select()
+      .from(leads)
+      .where(and(eq(leads.id, leadId), eq(leads.userId, req.user.id)))
+      .limit(1);
+
+    if (!lead) return res.status(404).json({ error: 'Lead not found.' });
+    if (!lead.aiEnabled) return res.status(409).json({ error: 'AI is paused for this lead.' });
+
+    const leadConversations = await db
+      .select()
+      .from(conversations)
+      .where(eq(conversations.leadId, leadId));
+
+    const history = [];
+    for (const conversation of leadConversations) {
+      const table = conversation.type === 'sms' ? smsTable : emailTable;
+      const messages = await db
+        .select()
+        .from(table)
+        .where(eq(table.conversationId, conversation.id))
+        .orderBy(table.sentAt);
+      history.push(...messages.map((message) => ({ ...message, channel: conversation.type, conversation })));
+    }
+
+    const latestInbound = history
+      .filter((message) => message.direction === 'inbound')
+      .sort((a, b) => new Date(b.sentAt) - new Date(a.sentAt))[0];
+    if (!latestInbound) return res.status(400).json({ error: 'An inbound message is required before a reply can be drafted.' });
+
+    const [property] = lead.propertyId
+      ? await db.select().from(properties).where(eq(properties.id, lead.propertyId)).limit(1)
+      : [];
+    const notes = await db
+      .select({ note: leadNotes.note })
+      .from(leadNotes)
+      .where(eq(leadNotes.leadId, leadId))
+      .orderBy(desc(leadNotes.createdAt));
+    const [agent] = await db.select().from(users).where(eq(users.id, req.user.id)).limit(1);
+    const agentInfo = agent ? { name: agent.name, email: agent.email, phone: agent.phone, brokerage: null } : null;
+    const propertyDescription = property?.description ?? property?.addressLine1 ?? null;
+    const messageHistory = history.map(({ conversation, channel, ...message }) => ({ ...message, channel }));
+
+    if (latestInbound.channel === 'email') {
+      const generated = await generateEmailAiReply(
+        lead,
+        latestInbound.conversation,
+        latestInbound.subject ?? null,
+        latestInbound.body,
+        propertyDescription,
+        messageHistory,
+        notes.map(({ note }) => note),
+        agentInfo,
+      );
+      if (!generated.body) return res.status(502).json({ error: 'A draft could not be generated. Check the AI connection and try again.' });
+      return res.json({ channel: 'email', body: generated.body, subject: generated.subject, readyToBook: generated.readyToBook });
+    }
+
+    const generated = await generateSmsAiReply(
+      lead,
+      latestInbound.conversation,
+      latestInbound.body,
+      propertyDescription,
+      messageHistory,
+      notes.map(({ note }) => note),
+      agentInfo,
+    );
+    if (!generated.reply) return res.status(502).json({ error: 'A draft could not be generated. Check the AI connection and try again.' });
+    return res.json({ channel: 'sms', body: generated.reply, readyToBook: generated.readyToBook });
+  } catch (err) {
+    console.error('POST /api/leads/:id/generate-draft error:', err);
     return res.status(500).json({ error: 'Internal server error' });
   }
 });

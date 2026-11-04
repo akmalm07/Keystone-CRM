@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "node --test test/lead-scoring.test.js",
+    "test:integration": "node --test test/*.test.js"
   },
   "keywords": [],
   "author": "",

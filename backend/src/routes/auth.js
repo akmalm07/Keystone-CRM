@@ -43,7 +43,10 @@ router.post('/signup', async (req, res) => {
       email: email.toLowerCase().trim(),
       passwordHash,
       source: 'manual',
-      emailConfirmed: false,
+      // Manual confirmation was previously required by the UI, but the
+      // verification-code endpoint was never implemented. Mark the account
+      // ready here so a successful signup can always reach onboarding.
+      emailConfirmed: true,
       onboardComplete: false,
     }).returning();
 

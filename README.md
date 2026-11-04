@@ -1,195 +1,120 @@
-# Real Estate Lead Management Platform
+# Keystone CRM
 
-## Overview
+**Status: feature-complete MVP**
 
-This project is a full-stack real estate lead management platform designed to help agents organize, communicate with, and follow up with prospective clients across multiple communication channels.
+Keystone CRM is a focused workspace for real-estate agents to manage incoming leads, keep property context close to the conversation, and prepare AI-assisted replies without giving up final approval.
 
-The system integrates with email providers, SMS messaging services, and lead-generation platforms to automatically capture incoming leads, create conversations, track communication history, and assist agents with AI-generated responses and workflow automation.
+## Demo
 
-This project was built primarily as a software engineering and systems design exercise to explore large-scale backend architecture, API integrations, asynchronous event processing, AI-assisted workflows, and full-stack application development.
+<video src="output/playwright/keystone-ai-reply-demo.webm" controls muted playsinline width="100%"></video>
 
----
+[Download or play the lead-to-AI-reply walkthrough](output/playwright/keystone-ai-reply-demo.webm)
 
-## Purpose
+The demo follows an incoming Zillow lead from the lead queue into their workspace. It generates a context-aware reply, flags booking intent, and leaves the draft editable before any message is sent. The recording uses representative local data; it does not contact live leads or providers.
 
-Real estate agents often receive leads from multiple sources such as:
+## What’s included
 
-* Zillow
-* Realtor.com
-* Referrals
-* Direct email inquiries
-* SMS conversations
+- Lead pipeline with search, status filtering, referral capture, verification, and deletion workflows
+- Property inventory with address, price, status, and listing context
+- Conversation timeline across SMS and email
+- Lead workspace with private notes and full contact/property context
+- AI draft generation for the latest inbound message, with agent review before send
+- Gmail OAuth and watch/webhook ingestion infrastructure
+- Outlook integration foundations
+- SMS and email delivery integrations
+- Dashboard metrics, activity feed, and lead-status reporting
 
-Managing these leads manually can be time-consuming and error-prone.
+## Stack
 
-The goal of this platform is to centralize lead management by:
+| Layer | Technology |
+| --- | --- |
+| Frontend | React, TypeScript, Vite, Tailwind CSS |
+| Backend | Node.js, Express |
+| Database | PostgreSQL, Drizzle ORM, Neon-compatible connection |
+| AI | OpenAI API |
+| Integrations | Gmail, Outlook, Telnyx SMS |
 
-* Automatically importing leads
-* Tracking conversations
-* Organizing communication history
-* Assisting with follow-up messaging
-* Providing a unified interface for managing client interactions
+## Run locally
 
----
+### Prerequisites
 
-## Features
+- Node.js 20+
+- A PostgreSQL-compatible database
+- An OpenAI API key for live AI drafts
 
-### Lead Management
+### 1. Configure the backend
 
-* Create and manage leads
-* Track lead status throughout the sales process
-* Assign leads to properties
-* Store notes and follow-up tasks
-* Maintain activity history
+```bash
+cd backend
+copy .env.example .env
+npm ci
+```
 
-### Multi-Channel Communication
+Update `backend/.env` with at least `DATABASE_URL`, `JWT_SECRET`, and `PASSWORD_RESET_SECRET`. Add provider credentials only for the integrations you intend to test.
 
-* SMS messaging support
-* Email conversation support
-* Unified conversation tracking
-* Conversation status management
-* Follow-up scheduling
+### 2. Start the API
 
-### AI-Assisted Workflows
+```bash
+cd backend
+npm run dev
+```
 
-* AI-generated SMS responses
-* AI-generated email responses
-* Lead information extraction from inbound emails
-* Conversation context tracking
-* Automated note generation
-* Automated task suggestions
-* Readiness-to-book detection
+The API runs at `http://localhost:8080` by default.
 
-### Email Integration
+### 3. Start the frontend
 
-* Gmail integration
-* OAuth authentication
-* Gmail Watch API integration
-* Pub/Sub webhook processing
-* Automated inbound email handling
-* Email thread tracking
+In a second terminal:
 
-### Data Management
+```bash
+cd frontend
+npm ci
+npm run dev
+```
 
-* PostgreSQL database
-* Drizzle ORM
-* Relational data modeling
-* Audit and activity logging
-* Lead-task management
+Open the Vite URL shown in the terminal (normally `http://localhost:5173`).
 
-### Frontend
+## Verify the project
 
-* React-based user interface
-* Lead dashboard
-* Conversation views
-* Messaging interface
-* Lead detail pages
-* Administrative workflows
+```bash
+cd frontend
+npm run build
+npm run lint
+npm test --prefix ../backend
+```
 
----
+The default backend test suite runs deterministic lead-scoring tests. Run environment-backed provider, database, and webhook checks only when the required test data and credentials are configured:
 
-## Technical Stack
+```bash
+npm run test:integration --prefix backend
+```
 
-### Frontend
+## How the AI reply workflow works
 
-* React
-* Vite
-* JavaScript
-* React Router
+1. A lead message enters through a connected inbox or SMS webhook.
+2. Keystone stores the conversation with the lead, property, and private-note context.
+3. From the lead workspace, select **Generate reply**.
+4. The API builds a channel-aware draft from the latest inbound message and relevant context.
+5. The agent reviews, edits, or dismisses the draft; nothing is sent automatically from this screen.
 
-### Backend
+## Planned enhancements
 
-* Node.js
-* Express
-* Drizzle ORM
+- Lead assignment, team permissions, and shared inboxes
+- Calendar availability and one-click showing scheduling
+- Follow-up sequences with quiet hours and approval rules
+- More robust Outlook ingestion and delivery coverage
+- Lead-score explanations and configurable scoring rules
+- Reporting for response time, conversion, source quality, and pipeline health
+- File attachments, property media, and richer listing imports
+- Expanded test coverage for provider integrations and end-to-end authenticated flows
 
-### Database
+## Project structure
 
-* PostgreSQL
-* Neon
+```text
+frontend/   React application and CRM workspace
+backend/    Express API, integrations, AI helpers, and database routes
+output/     Recorded product walkthroughs
+```
 
-### Cloud Services
+## Notes
 
-* Google Cloud Pub/Sub
-* Gmail API
-
-### AI
-
-* OpenAI API
-
-### Messaging
-
-* Telnyx SMS
-
----
-
-## System Architecture
-
-High-level workflow:
-
-1. Lead enters the system through email, referral, SMS, or external platform.
-2. Lead data is parsed and stored.
-3. Conversations are created or linked.
-4. Communication history is preserved.
-5. AI can generate suggested responses.
-6. Messages are delivered through email or SMS providers.
-7. Agent actions, notes, and tasks are tracked for future follow-up.
-
----
-
-## Engineering Challenges
-
-This project explores several non-trivial engineering problems:
-
-* Email thread reconstruction
-* OAuth account management
-* Webhook processing
-* Event-driven architecture
-* Lead extraction from unstructured text
-* AI-assisted workflow automation
-* Multi-channel communication management
-* Conversation state persistence
-* Relational data modeling
-
----
-
-## Current Limitations
-
-This project remains under active development and is not considered production-ready.
-
-Known areas that still require improvement include:
-
-* Lead extraction accuracy for certain email formats
-* Email threading edge cases
-* Outlook-specific integrations
-* Message delivery reliability improvements
-* Additional testing and validation
-* Error handling hardening
-* Frontend polish and UX improvements
-* Performance optimization for larger datasets
-
-These limitations are expected and reflect the project's role as a learning and engineering-focused application rather than a commercial product.
-
----
-
-## What I Learned
-
-Through this project I gained hands-on experience with:
-
-* Full-stack web application development
-* Database design
-* REST API development
-* OAuth authentication flows
-* Event-driven systems
-* Cloud integrations
-* AI-assisted software workflows
-* Production-style debugging
-* Large-scale application architecture
-
-The project served as a practical environment for exploring how complex software systems are designed, integrated, debugged, and maintained across multiple services and communication channels.
-
----
-
-## Disclaimer
-
-This project was developed as a portfolio and learning project. While many features are functional, the system is not intended for production deployment without additional testing, security review, and operational hardening.
+Keystone is complete as an MVP. Production deployment still requires normal operational setup: a managed database, secure environment variables, verified OAuth/webhook domains, and provider credentials.

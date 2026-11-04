@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function PrivacyPolicyPage() {
@@ -35,7 +34,7 @@ export default function PrivacyPolicyPage() {
           <li>Generate a personal profile about you to make your visit to the Site more personalized.</li>
         </ul>
 
-        <h2 className="2xl font-bold text-gray-800 mb-4">3. Disclosure of Your Information</h2>
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">3. Disclosure of Your Information</h2>
         <p className="mb-4 text-gray-700">
           We may share information we have collected about you in certain situations. Your information may be disclosed as follows:
         </p>

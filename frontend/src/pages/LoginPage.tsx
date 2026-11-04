@@ -22,7 +22,7 @@ export function LoginPage() {
     if (!isAuthenticated || !user) return
 
     if (user.source === 'manual' && !user.emailConfirmed) {
-      navigate('/confirm-email', { replace: true, state: { email: user.email } })
+      navigate('/onboard', { replace: true })
     } else if (!user.onboardComplete) {
       navigate('/onboard', { replace: true })
     } else {
@@ -88,7 +88,7 @@ export function LoginPage() {
           <div className="w-9 h-9 bg-[#4f46e5] rounded-xl flex items-center justify-center">
             <Zap className="w-5 h-5 text-white" strokeWidth={2.5} />
           </div>
-          <span className="text-xl font-semibold text-[#0f172a] tracking-tight">RealCRM</span>
+          <span className="text-xl font-semibold text-[#0f172a] tracking-tight">Keystone CRM</span>
         </div>
 
         {/* Card */}
@@ -100,7 +100,7 @@ export function LoginPage() {
             <p className="text-sm text-[#94a3b8]">
               {mode === 'login'
                 ? 'Sign in to your account to continue'
-                : 'Get started with RealCRM today'}
+                : 'Set up your Keystone workspace'}
             </p>
           </div>
 
@@ -244,15 +244,15 @@ export function LoginPage() {
           <div className="mt-6 pt-6 border-t border-[#e5e7eb]">
             <p className="text-xs text-center text-[#94a3b8]">
               By continuing, you agree to our{' '}
-              <a href="#" className="text-[#4f46e5] hover:underline">Terms of Service</a>
+              <a href="/terms" className="text-[#4f46e5] hover:underline">Terms of Service</a>
               {' '}and{' '}
-              <a href="#" className="text-[#4f46e5] hover:underline">Privacy Policy</a>
+              <a href="/privacy" className="text-[#4f46e5] hover:underline">Privacy Policy</a>
             </p>
           </div>
         </div>
 
         <p className="text-center text-xs text-[#94a3b8] mt-6">
-          © 2025 RealCRM. All rights reserved.
+          © {new Date().getFullYear()} Keystone CRM. All rights reserved.
         </p>
       </div>
     </div>

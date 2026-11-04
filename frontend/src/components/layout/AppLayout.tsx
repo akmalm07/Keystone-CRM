@@ -7,7 +7,7 @@ export function AppLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="flex h-screen bg-[#f9fafb] overflow-hidden">
+    <div className="flex h-screen bg-[#f4f5f3] overflow-hidden">
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
@@ -23,7 +23,7 @@ export function AppLayout() {
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
         <TopNav onMenuClick={() => setSidebarOpen(true)} />
         <main className="flex-1 overflow-y-auto scrollbar-thin">
-          <div className="p-6 max-w-[1400px] mx-auto">
+          <div className="p-5 sm:p-7 max-w-[1440px] mx-auto">
             <Outlet />
           </div>
         </main>

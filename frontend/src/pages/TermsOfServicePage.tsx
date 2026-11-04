@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function TermsOfServicePage() {
@@ -25,7 +24,7 @@ export default function TermsOfServicePage() {
           The content, organization, graphics, design, compilation, magnetic translation, digital conversion and other matters related to the Site are protected under applicable copyrights, trademarks and other proprietary (including but not limited to intellectual property) rights. The copying, redistribution, use or publication by you of any such matters or any part of the Site, except as allowed by Section 4, is strictly prohibited. You do not acquire ownership rights to any content, document or other materials viewed through the Site.
         </p>
 
-        <h2 className="2xl font-bold text-gray-800 mb-4">4. Disclaimers</h2>
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">4. Disclaimers</h2>
         <p className="mb-4 text-gray-700">
           The information on this site is provided "as is" and without warranties of any kind, either expressed or implied. To the fullest extent permissible pursuant to applicable law, we disclaim all warranties, express or implied, including, but not limited to, implied warranties of merchantability and fitness for a particular purpose.
         </p>
