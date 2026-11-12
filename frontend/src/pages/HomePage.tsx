@@ -14,8 +14,10 @@ export default function HomePage() {
       </header>
 
       <main>
-        <section className="mx-auto max-w-7xl px-6 pb-14 pt-12 lg:px-8 lg:pb-20 lg:pt-20">
-          <div>
+        <section className="relative isolate overflow-hidden bg-[#e8ece7]" aria-label="Introduction">
+          <div className="absolute inset-0 -z-10 bg-[url('/intro-home.webp')] bg-cover bg-[center_right]" aria-hidden="true" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#f7f8f6]/95 via-[#f7f8f6]/90 to-[#f7f8f6]/55 sm:via-[#f7f8f6]/80 sm:to-[#f7f8f6]/10" aria-hidden="true" />
+          <div className="mx-auto max-w-7xl px-6 pb-14 pt-12 lg:px-8 lg:pb-20 lg:pt-20">
             <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700">
               <span className="h-1.5 w-1.5 rounded-full bg-[#c77c26]" aria-hidden="true" /> Built for working agents
             </p>
@@ -32,6 +34,28 @@ export default function HomePage() {
                 <li key={item} className="flex items-center gap-2"><Check size={16} className="text-slate-600" aria-hidden="true" />{item}</li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        <section className="border-y border-slate-200 bg-white" aria-labelledby="integrations-title">
+          <div className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-[.85fr_1.15fr] lg:gap-14 lg:px-8">
+            <div>
+              <h2 id="integrations-title" className="text-balance text-4xl font-semibold leading-[1.02] tracking-[-.04em] sm:text-5xl lg:text-6xl">
+                From listing inquiry <span className="block text-slate-600">to Keystone.</span>
+              </h2>
+              <p className="mt-3 max-w-md leading-7 text-slate-700">Connect your lead sources through Zapier so new inquiries land in your workspace, ready for review.</p>
+              <Link to="/request-access" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">Request access <ArrowRight size={15} aria-hidden="true" /></Link>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <div className="border-t border-slate-200 pt-5">
+                <h3><img src="/zillow-logo.png" alt="Zillow" className="h-7 w-auto max-w-full object-contain object-left" /></h3>
+                <p className="mt-4 text-sm leading-6 text-slate-700">Send new Premier Agent leads to Keystone using the Zillow Tech Connect trigger in Zapier.</p>
+              </div>
+              <div className="border-t border-slate-200 pt-5">
+                <h3><img src="/streeteasy-logo.png" alt="StreetEasy" className="h-7 w-auto max-w-full object-contain object-left" /></h3>
+                <p className="mt-4 text-sm leading-6 text-slate-700">Forward StreetEasy lead emails to Zapier’s email parser to capture the contact and listing details.</p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -77,27 +101,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="border-y border-slate-200 bg-white" aria-labelledby="integrations-title">
-          <div className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-[.85fr_1.15fr] lg:gap-14 lg:px-8">
-            <div>
-              <h2 id="integrations-title" className="text-balance text-4xl font-semibold leading-[1.02] tracking-[-.04em] sm:text-5xl lg:text-6xl">
-                From listing inquiry <span className="block text-slate-600">to Keystone.</span>
-              </h2>
-              <p className="mt-3 max-w-md leading-7 text-slate-700">Connect your lead sources through Zapier so new inquiries land in your workspace, ready for review.</p>
-              <Link to="/request-access" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">Request access <ArrowRight size={15} aria-hidden="true" /></Link>
-            </div>
-            <div className="grid gap-6 sm:grid-cols-2">
-              <div className="border-t border-slate-200 pt-5">
-                <h3><img src="/zillow-logo.png" alt="Zillow" className="h-7 w-auto max-w-full object-contain object-left" /></h3>
-                <p className="mt-4 text-sm leading-6 text-slate-700">Send new Premier Agent leads to Keystone using the Zillow Tech Connect trigger in Zapier.</p>
-              </div>
-              <div className="border-t border-slate-200 pt-5">
-                <h3><img src="/streeteasy-logo.png" alt="StreetEasy" className="h-7 w-auto max-w-full object-contain object-left" /></h3>
-                <p className="mt-4 text-sm leading-6 text-slate-700">Forward StreetEasy lead emails to Zapier’s email parser to capture the contact and listing details.</p>
-              </div>
-            </div>
-          </div>
-        </section>
+
       </main>
 
       <footer className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-8 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between lg:px-8">

@@ -88,8 +88,8 @@ export default function DemoPage() {
     request.current?.abort()
   }, [])
   useEffect(() => {
-    if (step === 'notification') notification.current?.focus()
-    if (step === 'manual') agentReply.current?.focus()
+    if (step === 'notification') notification.current?.focus({ preventScroll: true })
+    if (step === 'manual') agentReply.current?.focus({ preventScroll: true })
   }, [step])
 
   useEffect(() => {

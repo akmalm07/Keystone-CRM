@@ -1,16 +1,12 @@
 # Keystone CRM
 
-**Status: MVP; production deployment requires additional setup and validation.**
+**Status: Functional MVP, ready to run locally.**
 
 Keystone CRM is a focused workspace for real-estate agents to manage incoming leads, keep property context close to the conversation, and prepare AI-assisted replies without giving up final approval.
 
-## Demo
+## Interactive demo
 
-![Recorded walkthrough of the lead-to-AI-reply workflow](output/playwright/keystone-ai-reply-preview.gif)
-
-[Play or download the full walkthrough (MP4)](output/playwright/keystone-ai-reply-demo.mp4) · [WebM version](output/playwright/keystone-ai-reply-demo.webm)
-
-The demo follows an incoming Zillow lead from the lead queue into their workspace. It generates a context-aware reply, flags booking intent, and leaves the draft editable before any message is sent. The recording uses representative local data; it does not contact live leads or providers.
+Start the app and visit `/demo` to explore a simulated buyer inquiry, property questions, and the context used to prepare replies. The listing, messages, and appointments are simulated. Live AI replies require a valid OpenAI API key; sample replies are available if the service is unavailable.
 
 ## What’s included
 
@@ -50,7 +46,7 @@ copy .env.example .env
 npm ci
 ```
 
-Update `backend/.env` with at least `DATABASE_URL`, `JWT_SECRET`, and `PASSWORD_RESET_SECRET`. Add provider credentials only for the integrations you intend to test.
+Update `backend/.env` with at least `DATABASE_URL`, `JWT_SECRET`, and `PASSWORD_RESET_SECRET`. Set `OPENAI_API_KEY` for live AI replies and add provider credentials for the integrations you intend to test. Existing environment variables take precedence over values in `.env`.
 
 ### 2. Start the API
 
@@ -112,7 +108,6 @@ npm run test:integration --prefix backend
 ```text
 frontend/   React application and CRM workspace
 backend/    Express API, integrations, AI helpers, and database routes
-output/     Recorded product walkthroughs
 ```
 
 ## Deploy to Google Cloud Run
