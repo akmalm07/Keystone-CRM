@@ -4,9 +4,9 @@
 
 Keystone CRM is a focused workspace for real-estate agents to manage incoming leads, keep property context close to the conversation, and prepare AI-assisted replies without giving up final approval.
 
-## Interactive demo
+## Demo
 
-Start the app and visit `/demo` to explore a simulated buyer inquiry, property questions, and the context used to prepare replies. The listing, messages, and appointments are simulated. Live AI replies require a valid OpenAI API key; sample replies are available if the service is unavailable.
+https://github.com/user-attachments/assets/d02d1025-e29e-42c6-8e99-9ca9748a90f0
 
 ## What’s included
 
