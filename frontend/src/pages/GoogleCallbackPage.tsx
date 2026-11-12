@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { Zap } from 'lucide-react'
+import { KeystoneMark } from '../components/KeystoneMark'
 import { useAuth } from '../hooks/useAuth'
 import { BACKEND_URL } from '../consts'
 
@@ -78,9 +78,7 @@ export function GoogleCallbackPage() {
 
   return (
     <div className="min-h-screen bg-[#f9fafb] flex flex-col items-center justify-center gap-4">
-      <div className="w-9 h-9 bg-[#4f46e5] rounded-xl flex items-center justify-center">
-        <Zap className="w-5 h-5 text-white" strokeWidth={2.5} />
-      </div>
+      <KeystoneMark />
       <div className="flex items-center gap-2 text-sm text-[#475569]">
         <svg className="w-4 h-4 animate-spin text-[#4f46e5]" viewBox="0 0 24 24" fill="none">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />

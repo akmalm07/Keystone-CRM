@@ -5,6 +5,7 @@ import { db } from '../db/index.js'
 import { users, oauthAccounts } from '../db/schema.js'
 import { createToken, verifyToken, createTempToken, verifyTempToken } from './jwt.js'
 import { cookieJson } from './consts.js';
+import { canSignUp } from './signup-access.js';
 
 const googleAuthRouter = Router();
 
@@ -12,7 +13,7 @@ const clientId = process.env.GOOGLE_CLIENT_ID;
 const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
 const redirectUri = process.env.GOOGLE_REDIRECT_URI;
 
-const SCOPES = process.env.GOOGLE_SCOPES.split(',');
+const SCOPES = (process.env.GOOGLE_SCOPES || '').split(',').filter(Boolean);
 
 // The frontend origin — used for post-OAuth redirects back into the SPA.
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
@@ -262,7 +263,7 @@ googleAuthRouter.get('/', async (req, res) => {
       // overwrite progress the user has already made.
       oauthDbId = existingAccount.accountId;
 
-      if (userInfo.email !== existingAccount.email) {
+      if (userInfo.email.trim().toLowerCase() !== existingAccount.email.trim().toLowerCase()) {
         return res.status(400).json({
           error: 'Failed to verify email',
         });
@@ -277,6 +278,14 @@ googleAuthRouter.get('/', async (req, res) => {
           .where(eq(oauthAccounts.id, existingAccount.accountId));
       }
     } else {
+      if (userInfo.verified_email !== true) {
+        return res.status(400).send('Google did not verify this email.');
+      }
+      const [knownUser] = await db.select({ id: users.id }).from(users)
+        .where(eq(users.email, userInfo.email.trim().toLowerCase())).limit(1);
+      if (!knownUser && !await canSignUp(userInfo.email)) {
+        return res.redirect(`${FRONTEND_URL}/request-access?reason=signup`);
+      }
       if (!refreshToken) {
         // No refresh token — redirect back to Google to force consent and get one.
         const authUrl = createGoogleUrl(oauth2Client, true);
@@ -294,7 +303,7 @@ googleAuthRouter.get('/', async (req, res) => {
           .insert(users)
           .values({
             name: userInfo.name,
-            email: userInfo.email,
+            email: userInfo.email.trim().toLowerCase(),
             emailConfirmed: true,
             onboardComplete: false,
             source: 'google',
@@ -310,7 +319,7 @@ googleAuthRouter.get('/', async (req, res) => {
           const [existingUser] = await db
             .select()
             .from(users)
-            .where(eq(users.email, userInfo.email))
+            .where(eq(users.email, userInfo.email.trim().toLowerCase()))
             .limit(1);
 
           userDb = existingUser;

@@ -188,6 +188,7 @@ export function LeadModal({
                 <select value={form.source} onChange={set('source')} className="w-full px-3 py-2 text-sm border border-[#e5e7eb] rounded-lg outline-none focus:border-[#4f46e5] transition-colors bg-white">
                   <option value="referral">Referral — Personally referred by someone</option>
                   <option value="zillow">Zillow</option>
+                  <option value="streeteasy">StreetEasy</option>
                   <option value="realtor">Realtor.com</option>
                   <option value="unknown">Unknown / Other</option>
                 </select>

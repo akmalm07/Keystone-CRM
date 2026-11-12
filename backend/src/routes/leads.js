@@ -13,7 +13,7 @@ import { generateEmailAiReply } from '../ai/email-reply.js';
 
 const router = Router();
 
-const VALID_SOURCES  = ['zillow', 'realtor', 'referral', 'unknown'];
+const VALID_SOURCES  = ['zillow', 'realtor', 'referral', 'unknown', 'streeteasy'];
 // 'unverified' excluded — only set by the ingestion pipeline
 const VALID_STATUSES = ['active', 'ready', 'archived', 'pending_deletion'];
 

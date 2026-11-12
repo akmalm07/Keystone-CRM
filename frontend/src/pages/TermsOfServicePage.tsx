@@ -6,7 +6,7 @@ export default function TermsOfServicePage() {
       <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
         <h1 className="text-3xl font-extrabold text-gray-900 mb-6">Terms of Service</h1>
         <p className="mb-4 text-gray-700">
-          Welcome to our service. By accessing or using our website and services, you agree to comply with and be bound by the following terms and conditions of use. Please review these terms carefully. If you do not agree to these terms, you should not use this website.
+          Welcome to Keystone CRM. By accessing or using <a className="underline underline-offset-2" href="https://crmbot.online">crmbot.online</a> and its services, you agree to comply with and be bound by the following terms and conditions of use. Please review these terms carefully. If you do not agree to these terms, you should not use this website.
         </p>
 
         <h2 className="text-2xl font-bold text-gray-800 mb-4">1. Acceptance of Terms</h2>

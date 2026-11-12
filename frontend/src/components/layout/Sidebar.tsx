@@ -6,8 +6,8 @@ import {
   MessageSquare,
   Settings,
   X,
-  Zap,
 } from 'lucide-react'
+import { KeystoneMark } from '../KeystoneMark'
 import { useAuth } from '../../hooks/useAuth'
 import { cn } from '../../lib/utils'
 
@@ -43,9 +43,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
       {/* Logo */}
       <div className="flex items-center justify-between h-16 px-5 border-b border-[#263d54] flex-shrink-0">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-[#c8793c] rounded-lg flex items-center justify-center">
-            <Zap className="w-4 h-4 text-[#14253a]" strokeWidth={2.5} />
-          </div>
+          <KeystoneMark className="h-8 w-8 ring-1 ring-inset ring-white/20 rounded-lg" />
           <span className="font-semibold text-white text-sm tracking-tight">Keystone CRM</span>
         </div>
         <button

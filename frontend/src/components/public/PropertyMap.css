@@ -1,0 +1,28 @@
+.keystone-property-map {
+  position: relative;
+  z-index: 0;
+  height: 100%;
+  background: #dce7eb;
+}
+
+.keystone-property-map .leaflet-tile-pane {
+  filter: saturate(.55) contrast(.92);
+}
+
+.property-dot {
+  border: 2px solid #fff8ed;
+  border-radius: 50%;
+  background: #3b526d;
+  box-shadow: 0 2px 6px #17203360;
+}
+
+.property-dot-active {
+  border-color: #172033;
+  background: #e8b975;
+  box-shadow: 0 0 0 5px #e8b97570;
+}
+
+.property-dot:focus-visible {
+  outline: 3px solid #172033;
+  outline-offset: 4px;
+}

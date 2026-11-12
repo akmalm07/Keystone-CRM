@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Zap } from 'lucide-react'
+import { PublicBrand, publicField, publicPrimary, publicSecondary } from '../components/public/PublicBrand'
 import { useAuth } from '../hooks/useAuth'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { TriangleAlert } from 'lucide-react'
 import { BACKEND_URL } from '../consts'
 
 export function LoginPage() {
@@ -81,23 +82,15 @@ export function LoginPage() {
   const displayError = localError ?? authError
 
   return (
-    <div className="min-h-screen bg-[#f9fafb] flex items-center justify-center p-4">
-      <div className="w-full max-w-sm">
-        {/* Logo */}
-        <div className="flex items-center justify-center gap-2.5 mb-8">
-          <div className="w-9 h-9 bg-[#4f46e5] rounded-xl flex items-center justify-center">
-            <Zap className="w-5 h-5 text-white" strokeWidth={2.5} />
-          </div>
-          <span className="text-xl font-semibold text-[#0f172a] tracking-tight">Keystone CRM</span>
-        </div>
-
-        {/* Card */}
-        <div className="bg-white border border-[#e5e7eb] rounded-xl shadow-card p-8">
+    <div className="min-h-screen bg-[#f7f8fa] text-[#172033]">
+      <header className="mx-auto max-w-7xl px-6 py-5 lg:px-8"><PublicBrand /></header>
+      <div className="mx-auto max-w-md px-6 pb-12 pt-10 sm:pt-16">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
           <div className="text-center mb-6">
-            <h1 className="text-lg font-semibold text-[#0f172a] mb-1">
+            <h1 className="mb-2 text-3xl font-semibold tracking-tight">
               {mode === 'login' ? 'Welcome back' : 'Create an account'}
             </h1>
-            <p className="text-sm text-[#94a3b8]">
+            <p className="text-sm text-slate-600">
               {mode === 'login'
                 ? 'Sign in to your account to continue'
                 : 'Set up your Keystone workspace'}
@@ -105,7 +98,7 @@ export function LoginPage() {
           </div>
 
           {/* Mode toggle */}
-          <div className="flex gap-1 bg-[#f9fafb] border border-[#e5e7eb] rounded-lg p-1 mb-6">
+          <div className="flex gap-1 bg-[#f7f8fa] border border-[#e5e7eb] rounded-lg p-1 mb-6">
             {(['login', 'signup'] as const).map((m) => (
               <button
                 key={m}
@@ -116,8 +109,8 @@ export function LoginPage() {
                 }}
                 className={`flex-1 py-1.5 rounded-md text-sm font-medium transition-colors capitalize ${
                   mode === m
-                    ? 'bg-white text-[#0f172a] shadow-sm'
-                    : 'text-[#475569] hover:text-[#0f172a]'
+                    ? 'bg-white text-[#172033] shadow-sm'
+                    : 'text-[#475569] hover:text-[#172033]'
                 }`}
               >
                 {m === 'login' ? 'Sign In' : 'Sign Up'}
@@ -125,12 +118,19 @@ export function LoginPage() {
             ))}
           </div>
 
+          {mode === 'signup' && (
+            <div className="mb-5 flex gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm leading-5 text-amber-950">
+              <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-amber-800" aria-hidden="true" />
+              <p>Unauthorized emails will not be able to sign up. <Link to="/request-access" className="font-semibold underline underline-offset-2">Request access</Link> to get approved.</p>
+            </div>
+          )}
+
           {/* Google OAuth button */}
           <button
             type="button"
             onClick={() => handleGoogleAuth(mode)}
             disabled={googleLoading}
-            className="w-full mb-4 flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-[#e5e7eb] rounded-lg text-sm font-medium text-[#0f172a] hover:bg-[#f9fafb] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className={publicSecondary + ' mb-4 w-full'}
           >
             {googleLoading ? (
               <svg className="w-4 h-4 animate-spin text-[#4f46e5]" viewBox="0 0 24 24" fill="none">
@@ -153,7 +153,7 @@ export function LoginPage() {
               <div className="w-full border-t border-[#e5e7eb]" />
             </div>
             <div className="relative flex justify-center text-xs">
-              <span className="bg-white px-2 text-[#94a3b8]">or continue with email</span>
+              <span className="bg-white px-2 text-slate-600">or continue with email</span>
             </div>
           </div>
 
@@ -161,59 +161,63 @@ export function LoginPage() {
             {/* Name — signup only */}
             {mode === 'signup' && (
               <div>
-                <label className="block text-xs font-medium text-[#475569] mb-1.5">Full Name</label>
+                <label htmlFor="auth-full-name" className="mb-1.5 block text-sm font-medium text-slate-700">Full Name</label>
                 <input
-                  type="text"
+                  id="auth-full-name"
+                type="text"
                   required
                   autoComplete="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Alex Johnson"
-                  className="w-full bg-white border border-[#e5e7eb] rounded-lg text-sm text-[#0f172a] placeholder-[#94a3b8] px-3 py-2 outline-none transition-colors focus:border-[#4f46e5] focus:ring-2 focus:ring-[#eef2ff]"
+                  className={publicField}
                 />
               </div>
             )}
 
             {/* Email */}
             <div>
-              <label className="block text-xs font-medium text-[#475569] mb-1.5">Email Address</label>
+              <label htmlFor="auth-email" className="mb-1.5 block text-sm font-medium text-slate-700">Email Address</label>
               <input
+                id="auth-email"
                 type="email"
                 required
                 autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full bg-white border border-[#e5e7eb] rounded-lg text-sm text-[#0f172a] placeholder-[#94a3b8] px-3 py-2 outline-none transition-colors focus:border-[#4f46e5] focus:ring-2 focus:ring-[#eef2ff]"
+                className={publicField}
               />
             </div>
 
             {/* Password */}
             <div>
-              <label className="block text-xs font-medium text-[#475569] mb-1.5">Password</label>
+              <label htmlFor="auth-password" className="mb-1.5 block text-sm font-medium text-slate-700">Password</label>
               <input
+                id="auth-password"
                 type="password"
                 required
                 autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full bg-white border border-[#e5e7eb] rounded-lg text-sm text-[#0f172a] placeholder-[#94a3b8] px-3 py-2 outline-none transition-colors focus:border-[#4f46e5] focus:ring-2 focus:ring-[#eef2ff]"
+                className={publicField}
               />
             </div>
 
             {/* Confirm Password — signup only */}
             {mode === 'signup' && (
               <div>
-                <label className="block text-xs font-medium text-[#475569] mb-1.5">Confirm Password</label>
+                <label htmlFor="auth-confirm-password" className="mb-1.5 block text-sm font-medium text-slate-700">Confirm Password</label>
                 <input
-                  type="password"
+                  id="auth-confirm-password"
+                type="password"
                   required
                   autoComplete="new-password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-white border border-[#e5e7eb] rounded-lg text-sm text-[#0f172a] placeholder-[#94a3b8] px-3 py-2 outline-none transition-colors focus:border-[#4f46e5] focus:ring-2 focus:ring-[#eef2ff]"
+                  className={publicField}
                 />
               </div>
             )}
@@ -229,7 +233,7 @@ export function LoginPage() {
             <button
               type="submit"
               disabled={authLoading}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#4f46e5] text-white rounded-lg text-sm font-medium hover:bg-[#4338ca] transition-colors focus:outline-none focus:ring-2 focus:ring-[#4f46e5] focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed"
+              className={publicPrimary + ' w-full'}
             >
               {authLoading ? (
                 <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
@@ -242,7 +246,7 @@ export function LoginPage() {
           </form>
 
           <div className="mt-6 pt-6 border-t border-[#e5e7eb]">
-            <p className="text-xs text-center text-[#94a3b8]">
+            <p className="text-xs text-center text-slate-600">
               By continuing, you agree to our{' '}
               <a href="/terms" className="text-[#4f46e5] hover:underline">Terms of Service</a>
               {' '}and{' '}
@@ -251,7 +255,7 @@ export function LoginPage() {
           </div>
         </div>
 
-        <p className="text-center text-xs text-[#94a3b8] mt-6">
+        <p className="text-center text-xs text-slate-600 mt-6">
           © {new Date().getFullYear()} Keystone CRM. All rights reserved.
         </p>
       </div>

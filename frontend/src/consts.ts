@@ -1,1 +1,2 @@
-export const BACKEND_URL = "http://localhost:8080/";
+// Production serves the SPA and API from the same origin.
+export const BACKEND_URL = '/';

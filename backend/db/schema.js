@@ -32,7 +32,12 @@ export const entityTypeEnum = pgEnum('entity_type', ['lead', 'conversation', 'em
 
 // Consolidated source enum — used by both leads and properties.
 // 'referral' = lead came in via a personal referral from an existing contact.
-export const sourceEnum = pgEnum('source_type', ['zillow', 'realtor', 'referral', 'email', 'unknown']);
+export const sourceEnum = pgEnum('source_type', ['zillow', 'realtor', 'referral', 'email', 'unknown', 'streeteasy']);
+
+export const authorizedSignupEmails = pgTable('authorized_signup_emails', {
+  email: text('email').primaryKey(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+});
 
 export const propertySourceEnum = pgEnum('property_source_type', ['zillow', 'realtor', 'listing' ]);
 
@@ -279,6 +284,7 @@ export const leads = pgTable('leads', {
     .notNull(),
 
   sourceId: text('source_id'),
+  zapierDeliveryId: text('zapier_delivery_id'),
 
   // Current lifecycle status of the lead.
   //   active          — normal outreach in progress
@@ -313,7 +319,9 @@ export const leads = pgTable('leads', {
   })
     .defaultNow()
     .notNull(),
-});
+}, table => [
+  uniqueIndex('leads_zapier_delivery_unique').on(table.userId, table.source, table.zapierDeliveryId),
+]);
 
 /*
 |--------------------------------------------------------------------------

@@ -1,0 +1,9 @@
+[
+  {"id":"availability","title":"Listing availability","detail":"841 Maple Avenue is available.","kind":"fact"},
+  {"id":"backyard","title":"Backyard and fencing","detail":"The backyard is fully fenced.","kind":"fact"},
+  {"id":"parking","title":"Garage parking","detail":"One garage parking space.","kind":"fact"},
+  {"id":"layout","title":"Home layout","detail":"Three bedrooms and two bathrooms.","kind":"fact"},
+  {"id":"calendar","title":"Saturday showing windows","detail":"Eastern time: 10:00 a.m. busy, 11:30 a.m. open.","kind":"calendar","openSlot":"Saturday at 11:30 a.m. Eastern"},
+  {"id":"front-photo","title":"Front exterior photo","detail":"Sample photo of the front of a white house with a porch.","kind":"photo","path":"/demo-maple-avenue.jpg","alt":"Sample front exterior with a wraparound porch"},
+  {"id":"yard-photo","title":"Backyard photo","detail":"Sample photo of a grassy yard with a wooden fence and patio.","kind":"photo","path":"/demo-backyard.jpg","alt":"Sample grassy backyard with a wooden privacy fence and patio"}
+]

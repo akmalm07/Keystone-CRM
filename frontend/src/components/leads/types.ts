@@ -12,7 +12,7 @@ export interface ReferLeadFormData {
   name: string
   email: string
   phone: string
-  source: 'zillow' | 'realtor' | 'referral' | 'unknown' | ''
+  source: 'zillow' | 'streeteasy' | 'realtor' | 'referral' | 'unknown' | ''
   sourceId: string
   propertyId: string
   notes: string

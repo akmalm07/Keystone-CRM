@@ -191,6 +191,20 @@ export function SettingsPage() {
         </CardContent>
       </Card>
 
+      <Card>
+        <CardHeader><CardTitle>Zillow and StreetEasy through Zapier</CardTitle></CardHeader>
+        <CardContent className="space-y-3 text-sm text-slate-700">
+          <p>Ask your Keystone administrator for your webhook key and to assign incoming leads to your account.</p>
+          <p>For Zillow, start with a <a className="font-medium underline" href="https://zapier.com/apps/zillow/integrations" target="_blank" rel="noreferrer">Zillow Tech Connect</a> trigger. For StreetEasy, send lead emails to <a className="font-medium underline" href="https://zapier.com/apps/email-parser/integrations/webhook" target="_blank" rel="noreferrer">Email Parser by Zapier</a>.</p>
+          <p>In Webhooks by Zapier, add a JSON POST action to one of these URLs:</p>
+          <ul className="space-y-1 break-all">
+            <li><code>{window.location.origin}/webhook/zapier/zillow</code></li>
+            <li><code>{window.location.origin}/webhook/zapier/streeteasy</code></li>
+          </ul>
+          <p>Set the <code>X-Keystone-Key</code> header and map <code>deliveryId</code> to a stable lead or email ID. Include <code>email</code> or an international-format <code>phone</code>. You can also send <code>name</code>, <code>address</code>, and <code>message</code>.</p>
+        </CardContent>
+      </Card>
+
       {/* Notifications */}
       <Card>
         <CardHeader>

@@ -1,7 +1,8 @@
 /*
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Zap, Mail, RefreshCw } from 'lucide-react'
+import { Mail, RefreshCw } from 'lucide-react'
+import { PublicBrand } from '../components/public/PublicBrand'
 import { BACKEND_URL } from '../consts'
 import { useAuth } from '../hooks/useAuth'
 
@@ -86,12 +87,8 @@ export function ConfirmEmailPage() {
   return (
     <div className="min-h-screen bg-[#f9fafb] flex items-center justify-center p-4">
       <div className="w-full max-w-sm">
-        //{ Logo }
-        <div className="flex items-center justify-center gap-2.5 mb-8">
-          <div className="w-9 h-9 bg-[#4f46e5] rounded-xl flex items-center justify-center">
-            <Zap className="w-5 h-5 text-white" strokeWidth={2.5} />
-          </div>
-          <span className="text-xl font-semibold text-[#0f172a] tracking-tight">RealCRM</span>
+        <div className="mb-8 flex justify-center">
+          <PublicBrand />
         </div>
 
         <div className="bg-white border border-[#e5e7eb] rounded-xl shadow-card p-8">

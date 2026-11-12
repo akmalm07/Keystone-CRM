@@ -4,17 +4,18 @@ import twilio from 'twilio';
 import Telnyx from 'telnyx';
 
 
-export const twilioClient = twilio(
+export const twilioClient = process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_API_KEY_SID && process.env.TWILIO_API_KEY_SECRET ? twilio(
   process.env.TWILIO_ACCOUNT_SID,
   process.env.TWILIO_API_KEY_SID,     
   process.env.TWILIO_API_KEY_SECRET, 
-);
+) : null;
 
 
-export const telnyx = new Telnyx({ apiKey: process.env.TELNYX_API_KEY });
+export const telnyx = process.env.TELNYX_API_KEY ? new Telnyx({ apiKey: process.env.TELNYX_API_KEY }) : null;
 
 export async function sendSMS(to, body) {
   try {
+    if (!telnyx) throw new Error('TELNYX_API_KEY is not configured');
     const response = await telnyx.messages.send({
       from: process.env.TELNYX_PHONE_NUMBER,
       to,

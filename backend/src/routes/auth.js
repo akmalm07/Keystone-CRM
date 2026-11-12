@@ -8,6 +8,7 @@ import { createToken } from '../jwt.js';
 import { cookieJson } from '../consts.js';
 import { requireAuth } from '../middleware/requireAuth.js';
 import { sendEmail } from '../phone.js';
+import { canSignUp, signupAccessMessage } from '../signup-access.js';
 
 const router = Router();
 
@@ -23,9 +24,11 @@ function safeUser(user) {
 router.post('/signup', async (req, res) => {
   try {
     const { name, email, password } = req.body ?? {};
-    if (!name || !email || !password) {
+    if (typeof name !== 'string' || !name.trim() || typeof email !== 'string' ||
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) || typeof password !== 'string' || password.length < 8) {
       return res.status(400).json({ error: 'name, email, and password are required' });
     }
+    if (!await canSignUp(email)) return res.status(403).json({ error: signupAccessMessage });
 
     const existing = await db
       .select()

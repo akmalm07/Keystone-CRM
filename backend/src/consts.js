@@ -1,5 +1,5 @@
 export const cookieJson = {
   httpOnly: true,
-  secure: false, // TODO: set to true in production (HTTPS)
+  secure: process.env.NODE_ENV === 'production',
   sameSite: 'lax',
 }

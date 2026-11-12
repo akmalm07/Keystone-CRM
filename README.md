@@ -1,14 +1,14 @@
 # Keystone CRM
 
-**Status: feature-complete MVP**
+**Status: MVP; production deployment requires additional setup and validation.**
 
 Keystone CRM is a focused workspace for real-estate agents to manage incoming leads, keep property context close to the conversation, and prepare AI-assisted replies without giving up final approval.
 
 ## Demo
 
-<video src="output/playwright/keystone-ai-reply-demo.webm" controls muted playsinline width="100%"></video>
+![Recorded walkthrough of the lead-to-AI-reply workflow](output/playwright/keystone-ai-reply-preview.gif)
 
-[Download or play the lead-to-AI-reply walkthrough](output/playwright/keystone-ai-reply-demo.webm)
+[Play or download the full walkthrough (MP4)](output/playwright/keystone-ai-reply-demo.mp4) · [WebM version](output/playwright/keystone-ai-reply-demo.webm)
 
 The demo follows an incoming Zillow lead from the lead queue into their workspace. It generates a context-aware reply, flags booking intent, and leaves the draft editable before any message is sent. The recording uses representative local data; it does not contact live leads or providers.
 
@@ -38,8 +38,8 @@ The demo follows an incoming Zillow lead from the lead queue into their workspac
 
 ### Prerequisites
 
-- Node.js 20+
-- A PostgreSQL-compatible database
+- Node.js 22 (the container runtime)
+- A Neon database or a database compatible with the Neon serverless HTTP driver
 - An OpenAI API key for live AI drafts
 
 ### 1. Configure the backend
@@ -115,6 +115,8 @@ backend/    Express API, integrations, AI helpers, and database routes
 output/     Recorded product walkthroughs
 ```
 
-## Notes
+## Deploy to Google Cloud Run
 
-Keystone is complete as an MVP. Production deployment still requires normal operational setup: a managed database, secure environment variables, verified OAuth/webhook domains, and provider credentials.
+The root Dockerfile builds the frontend and API into one container. Cloud Run serves both from the same origin and injects `PORT`. See [DEPLOY.md](DEPLOY.md) for prerequisites, Secret Manager configuration, build and deployment commands, and integration setup.
+
+Before serving real customers, establish a complete database baseline and backups, verify authentication and provider callbacks, and review automated outreach and tenant isolation. Existing automatic message paths can send without an agent reviewing each message. The container alone does not establish production readiness.

@@ -6,7 +6,7 @@ export default function PrivacyPolicyPage() {
       <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
         <h1 className="text-3xl font-extrabold text-gray-900 mb-6">Privacy Policy</h1>
         <p className="mb-4 text-gray-700">
-          Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website [Your Website URL], including any other media form, media channel, mobile website, or mobile application related or connected thereto. Please read this Privacy Policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.
+          Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit <a className="underline underline-offset-2" href="https://crmbot.online">crmbot.online</a>, including any other media form, media channel, mobile website, or mobile application related or connected thereto. Please read this Privacy Policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.
         </p>
 
         <h2 className="text-2xl font-bold text-gray-800 mb-4">1. Information We Collect</h2>

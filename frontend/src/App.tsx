@@ -14,10 +14,15 @@ import HomePage from './pages/HomePage' // New
 import TermsOfServicePage from './pages/TermsOfServicePage' // New
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage' // New
 import { useAuth } from './hooks/useAuth'
+import DemoPage from './pages/DemoPage'
+import RequestAccessPage from './pages/RequestAccessPage'
 
 function App() {
   const { isAuthenticated, user, initializing } = useAuth()
   const location = useLocation()
+
+  if (location.pathname === '/demo') return <DemoPage />
+  if (location.pathname === '/request-access') return <RequestAccessPage />
 
   // Always let the Google OAuth callback page mount first so it can
   // run the /exchange fetch and set the session cookie before App.tsx

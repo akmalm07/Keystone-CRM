@@ -1,13 +1,13 @@
 import { ConfidentialClientApplication } from '@azure/msal-node';
 
 
-export const msalClient = new ConfidentialClientApplication({
+export const msalClient = process.env.MICROSOFT_CLIENT_ID ? new ConfidentialClientApplication({
   auth: {
     clientId: process.env.MICROSOFT_CLIENT_ID,
     clientSecret: process.env.MICROSOFT_CLIENT_SECRET,
     authority: 'https://login.microsoftonline.com/common',
   },
-});
+}) : null;
 
 export async function createOutlookAuthClient(refreshToken) {
   // MSAL does NOT expose a simple 'set refresh token' API like Google.
